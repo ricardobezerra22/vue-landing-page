@@ -8,12 +8,7 @@
       <h3 class="section-title text-primary">Transformações Reais</h3>
     </div>
     <div class="testimonials-header-desktop">
-      <div>
-        <v-btn variant="outlined" rounded color="primary" class="text-primary testimonials-button"
-          >Depoimentos</v-btn
-        >
-        <h3 class="section-title text-primary">Transformações Reais</h3>
-      </div>
+      <SectionHeader title="Depoimentos" subtitle="Transformações Reais" />
     </div>
     <div class="testimonials-grid">
       <div class="video-container">
@@ -112,7 +107,7 @@
 </template>
 
 <script setup>
-// No additional script needed for this component
+import SectionHeader from '../SectionHeader/SectionHeader.vue'
 </script>
 
 <style lang="scss" scoped src="./style.scss"></style>
