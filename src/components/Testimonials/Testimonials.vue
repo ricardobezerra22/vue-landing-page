@@ -7,7 +7,14 @@
       >
       <h3 class="section-title text-primary">Transformações Reais</h3>
     </div>
-
+    <div class="testimonials-header-desktop">
+      <div>
+        <v-btn variant="outlined" rounded color="primary" class="text-primary testimonials-button"
+          >Depoimentos</v-btn
+        >
+        <h3 class="section-title text-primary">Transformações Reais</h3>
+      </div>
+    </div>
     <div class="testimonials-grid">
       <div class="video-container">
         <div class="video-card">
@@ -44,29 +51,24 @@
       </div>
 
       <div class="testimonials-column">
-        <!-- Cabeçalho de depoimentos - Visível apenas em desktop -->
-        <div class="testimonials-header-desktop">
-          <div>
-            <v-btn
-              variant="outlined"
-              rounded
-              color="primary"
-              class="text-primary testimonials-button"
-              >Depoimentos</v-btn
-            >
-            <h3 class="section-title text-primary">Transformações Reais</h3>
-          </div>
-        </div>
         <div class="testimonial-card">
           <div class="testimonial-author">
-            <div class="author-avatar" style="background-image: url('https://images.unsplash.com/photo-1499952127939-9bbf5af6c51c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1476&q=80'); background-size: cover;"></div>
+            <div
+              class="author-avatar"
+              style="
+                background-image: url('https://images.unsplash.com/photo-1499952127939-9bbf5af6c51c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1476&q=80');
+                background-size: cover;
+              "
+            ></div>
             <div class="author-info">
               <h4>Carolina Silva</h4>
               <p class="author-title">Aluna há 8 meses</p>
             </div>
           </div>
           <p class="testimonial-text">
-            "Depois de dois filhos, achei que nunca mais recuperaria minha forma. Na Prime Fitness encontrei não só um treino eficiente, mas uma nova mentalidade sobre saúde. Perdi 12kg em 6 meses e ganhei uma energia que não tinha há anos. Os professores são incríveis!"
+            "Depois de dois filhos, achei que nunca mais recuperaria minha forma. Na Prime Fitness
+            encontrei não só um treino eficiente, mas uma nova mentalidade sobre saúde. Perdi 12kg
+            em 6 meses e ganhei uma energia que não tinha há anos. Os professores são incríveis!"
           </p>
           <div class="rating">
             <span class="star">★</span>
@@ -79,14 +81,22 @@
 
         <div class="testimonial-card">
           <div class="testimonial-author">
-            <div class="author-avatar" style="background-image: url('https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80'); background-size: cover;"></div>
+            <div
+              class="author-avatar"
+              style="
+                background-image: url('https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+                background-size: cover;
+              "
+            ></div>
             <div class="author-info">
               <h4>Marcos Oliveira</h4>
               <p class="author-title">Aluno do programa de força</p>
             </div>
           </div>
           <p class="testimonial-text">
-            "Comecei na Prime Fitness após uma lesão nas costas que me limitava muito. O acompanhamento personalizado fez toda diferença - em 3 meses, não só eliminei as dores como ganhei massa muscular e melhorei minha postura. O método deles realmente funciona!"
+            "Comecei na Prime Fitness após uma lesão nas costas que me limitava muito. O
+            acompanhamento personalizado fez toda diferença - em 3 meses, não só eliminei as dores
+            como ganhei massa muscular e melhorei minha postura. O método deles realmente funciona!"
           </p>
           <div class="rating">
             <span class="star">★</span>
