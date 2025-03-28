@@ -7,13 +7,18 @@
         <button class="primary-button">Start Your Journey</button>
       </div>
     </section>
-    
-    <Testimonials />
+    <section class="services-section">
+      <Services />
+    </section>
+    <section class="testimonials-section">
+      <Testimonials />
+    </section>
   </div>
 </template>
 
 <script setup>
-import Testimonials from '@/components/Testimonials/Testimonials.vue';
+import Testimonials from '@/components/Testimonials/Testimonials.vue'
+import Services from '@/components/Services/Services.vue'
 </script>
 
 <style scoped lang="scss" src="./style.scss"></style>

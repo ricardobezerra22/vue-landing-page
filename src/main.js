@@ -2,6 +2,7 @@ import '@/styles/global.scss'
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
+import { swiper } from '@/plugins/swiper'
 import VueApexCharts from 'vue3-apexcharts'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import i18n from '@/plugins/i18n'
@@ -15,6 +16,7 @@ const app = createApp(App)
 const pinia = createPinia()
 pinia.use(piniaPluginPersistedstate)
 app.use(VueApexCharts)
+app.use(swiper)
 app.use(pinia)
 
 app.use(i18n)
