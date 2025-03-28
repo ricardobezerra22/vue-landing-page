@@ -1,0 +1,274 @@
+1. Arquitetura Atual e Recomendações
+Estrutura Atual
+O projeto segue uma arquitetura baseada em componentes Vue.js com a seguinte organização:
+
+components/: Componentes reutilizáveis (AlertBus, Charts, DataTable, etc.)
+views/: Páginas da aplicação
+services/: Serviços para comunicação com APIs externas
+stores/: Gerenciamento de estado com Pinia
+router/: Configuração de rotas
+utils/: Funções utilitárias
+styles/: Estilos globais e variáveis
+plugins/: Configuração de plugins (i18n, vuetify)
+Pontos Fortes
+Separação clara de responsabilidades
+Uso de gerenciamento de estado centralizado (Pinia)
+Componentes modulares com estilos encapsulados
+Oportunidades de Melhoria
+Implementar uma arquitetura mais explicitamente baseada em princípios SOLID
+Melhorar a documentação de componentes e serviços
+Padronizar a estrutura de pastas para componentes
+2. Princípios Clean Code
+Nomenclatura
+Nomes Significativos: Use nomes que revelem a intenção
+js
+CopyInsert
+// Ruim
+const d = new Date(); 
+
+// Bom
+const currentDate = new Date();
+Funções Pequenas e Focadas: Cada função deve fazer apenas uma coisa
+js
+CopyInsert
+// Extrair lógica complexa em funções menores
+const handleCurrency = async () => {
+  alertBus.show = false
+  loading.value = true
+  try {
+    const response = await fetchCurrencyData()
+    processCurrencyData(response)
+  } catch (error) {
+    handleFetchError(error)
+  } finally {
+    loading.value = false
+  }
+}
+Argumentos Limitados: Limite o número de parâmetros (máximo 3)
+js
+CopyInsert
+// Prefira objetos para múltiplos parâmetros
+function updateUserProfile({ name, email, avatar }) {
+  // Implementação
+}
+Evite Comentários Óbvios: O código deve ser autoexplicativo
+3. Princípios SOLID
+Single Responsibility Principle (SRP)
+Cada componente/classe deve ter uma única responsabilidade
+js
+CopyInsert
+// Componente AlertBus: responsável apenas por exibir alertas
+// Componente DataTable: responsável apenas por exibir dados tabulares
+Open/Closed Principle (OCP)
+Componentes devem ser abertos para extensão, fechados para modificação
+js
+CopyInsert
+// Componente base que pode ser estendido com slots e props
+<BaseButton :variant="primary" @click="handleClick">
+  <slot></slot>
+</BaseButton>
+Liskov Substitution Principle (LSP)
+Componentes derivados devem ser substituíveis por seus componentes base
+Interface Segregation Principle (ISP)
+Prefira interfaces menores e específicas a uma grande interface genérica
+js
+CopyInsert
+// Defina props específicas em vez de objetos grandes e genéricos
+const props = defineProps({
+  title: String,
+  description: String,
+  // Em vez de: data: Object
+})
+Dependency Inversion Principle (DIP)
+Dependa de abstrações, não de implementações concretas
+js
+CopyInsert
+// Use injeção de dependência
+// Serviço abstrato que pode ser substituído em testes
+import { useApiService } from '@/composables/useApiService'
+
+const { fetchData } = useApiService()
+4. Estrutura de Pastas Recomendada
+CopyInsert
+src/
+├── assets/                # Recursos estáticos
+├── components/            # Componentes reutilizáveis
+│   ├── ui/                # Componentes de UI básicos
+│   └── domain/            # Componentes específicos do domínio
+├── composables/           # Lógica reutilizável (hooks Vue)
+├── config/                # Configurações da aplicação
+├── layouts/               # Layouts da aplicação
+├── plugins/               # Plugins Vue
+├── router/                # Configuração de rotas
+├── services/              # Serviços de API e externos
+│   ├── api/               # Clientes de API
+│   └── adapters/          # Adaptadores de dados
+├── stores/                # Gerenciamento de estado (Pinia)
+├── styles/                # Estilos globais
+├── utils/                 # Funções utilitárias
+└── views/                 # Páginas da aplicação
+5. Padrões de Componentes Vue
+Componentes Atômicos
+Divida a UI em componentes pequenos e reutilizáveis
+Use props para configuração e eventos para comunicação
+vue
+CopyInsert
+<!-- Componente Button.vue -->
+<template>
+  <button 
+    :class="['btn', `btn-${variant}`]" 
+    @click="$emit('click')"
+  >
+    <slot></slot>
+  </button>
+</template>
+
+<script setup>
+defineProps({
+  variant: {
+    type: String,
+    default: 'primary',
+    validator: (value) => ['primary', 'secondary', 'danger'].includes(value)
+  }
+})
+
+defineEmits(['click'])
+</script>
+Composables para Lógica Reutilizável
+Extraia lógica complexa em composables
+js
+CopyInsert
+// useAlert.js
+import { reactive } from 'vue'
+
+export function useAlert() {
+  const alert = reactive({
+    show: false,
+    type: 'info',
+    title: '',
+    text: '',
+    closable: true
+  })
+
+  function showAlert(options) {
+    Object.assign(alert, { show: true, ...options })
+  }
+
+  function hideAlert() {
+    alert.show = false
+  }
+
+  return {
+    alert,
+    showAlert,
+    hideAlert
+  }
+}
+6. Gestão de Estado
+Pinia Store
+Use Pinia para gerenciamento de estado global
+Divida stores por domínio
+Mantenha as stores simples e focadas
+js
+CopyInsert
+// userStore.js
+import { defineStore } from 'pinia'
+
+export const useUserStore = defineStore('user', {
+  state: () => ({
+    profile: null,
+    preferences: {}
+  }),
+  actions: {
+    async fetchProfile() {
+      // Implementação
+    },
+    updatePreferences(newPrefs) {
+      // Implementação
+    }
+  },
+  getters: {
+    isAuthenticated: (state) => !!state.profile
+  },
+  persist: true
+})
+7. Tratamento de Erros
+Use try/catch para operações assíncronas
+Centralize o tratamento de erros
+Forneça feedback claro ao usuário
+js
+CopyInsert
+// errorHandling.js
+export function useErrorHandler() {
+  const handleError = (error, context = '') => {
+    console.error(`Error in ${context}:`, error)
+    
+    // Categorize erros
+    if (error.response) {
+      // Erro de resposta da API
+      return handleApiError(error.response)
+    } else if (error.request) {
+      // Erro de rede
+      return {
+        title: 'Network Error',
+        text: 'Please check your internet connection'
+      }
+    } else {
+      // Erro genérico
+      return {
+        title: 'Application Error',
+        text: error.message || 'An unexpected error occurred'
+      }
+    }
+  }
+  
+  return { handleError }
+}
+8. Testes
+Estratégia de Testes
+Testes Unitários: Para componentes e funções isoladas
+Testes de Integração: Para interações entre componentes
+Testes E2E: Para fluxos completos do usuário (Cypress)
+js
+CopyInsert
+// Exemplo de teste de componente
+import { mount } from '@vue/test-utils'
+import Button from '@/components/ui/Button.vue'
+
+describe('Button.vue', () => {
+  it('renders correctly with default props', () => {
+    const wrapper = mount(Button)
+    expect(wrapper.classes()).toContain('btn-primary')
+  })
+  
+  it('emits click event when clicked', async () => {
+    const wrapper = mount(Button)
+    await wrapper.trigger('click')
+    expect(wrapper.emitted().click).toBeTruthy()
+  })
+})
+9. Convenções de Código
+Estilo e Formatação
+Use ESLint e Prettier para garantir consistência
+Siga as convenções do Vue Style Guide
+Commits e Controle de Versão
+Use mensagens de commit descritivas
+Siga o padrão Conventional Commits:
+CopyInsert
+feat: adiciona novo componente de alerta
+fix: corrige problema de layout no mobile
+refactor: melhora estrutura do componente DataTable
+10. Desempenho e Otimização
+Lazy loading de componentes e rotas
+Otimização de imagens e assets
+Memoização de cálculos pesados com computed e useMemo
+Virtualização para listas longas
+js
+CopyInsert
+// Lazy loading de rotas
+const routes = [
+  {
+    path: '/dashboard',
+    component: () => import('@/views/Dashboard.vue')
+  }
+]
