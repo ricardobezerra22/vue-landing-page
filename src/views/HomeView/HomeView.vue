@@ -7,6 +7,37 @@
         <button class="primary-button">Start Your Journey</button>
       </div>
     </section>
+    <section class="helper-section">
+      <div class="helper-container">
+        <div class="helper-video-container">
+          <div class="helper-cta-card">
+            <div class="cta-content">
+              <span class="feature-tag">ABORDAGEM EXCLUSIVA</span>
+              <h3>Compreendemos o Ser Humano em sua totalidade</h3>
+              <p>
+                Integramos Corpo, Mente e Energia em nossa abordagem única, refletindo a essência da
+                Metodologia PRIME.
+              </p>
+              <p>
+                Acolhemos cada fase da sua jornada, oferecendo cuidado personalizado e uma nova
+                consciência sobre treinamento para uma vida mais saudável.
+              </p>
+            </div>
+            <div class="cta-actions">
+              <button class="secondary-button">SAIBA MAIS SOBRE NÓS</button>
+            </div>
+          </div>
+
+          <div class="video-card">
+            <div class="video-overlay"></div>
+            <video controls>
+              <source src="@/assets/videos/video-demonstrativo.mp4" type="video/mp4" />
+              Seu navegador não suporta a reprodução de vídeos.
+            </video>
+          </div>
+        </div>
+      </div>
+    </section>
     <section class="roadmap-section">
       <SectionHeader title="METODOLOGIA" subtitle="Sua Trajetória" />
       <div class="roadmap">
