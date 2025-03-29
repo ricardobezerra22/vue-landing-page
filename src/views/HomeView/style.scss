@@ -6,13 +6,17 @@
 
 .home-container {
   width: 100%;
+  background: linear-gradient(135deg, #fff8f0 30%, #eec4a5 100%);
+  background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
 }
 
 .hero-section {
   height: 80vh;
   min-height: 500px;
   background-color: #f5f5f5;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
   background-size: cover;
   background-position: center;
   display: flex;
@@ -25,22 +29,22 @@
 .hero-content {
   max-width: 800px;
   color: white;
-  
+
   h1 {
     font-size: 2.5rem;
     margin-bottom: 1.5rem;
     font-weight: 700;
-    
+
     @media (min-width: 768px) {
       font-size: 3.5rem;
     }
   }
-  
+
   p {
     font-size: 1.2rem;
     margin-bottom: 2rem;
     opacity: 0.9;
-    
+
     @media (min-width: 768px) {
       font-size: 1.5rem;
     }
@@ -57,7 +61,7 @@
   border-radius: 50px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  
+
   &:hover {
     background-color: darken($primary, 10%);
   }
