@@ -1,26 +1,37 @@
 <template>
   <div class="home-container">
-    <section class="hero-section">
+    <Navbar />
+    <section id="hero" class="hero-section">
       <div class="hero-content">
-        <h1>Transform Your Body, Transform Your Life</h1>
-        <p>Join Prime Fitness and experience our personalized approach to fitness</p>
-        <button class="primary-button">Start Your Journey</button>
+        <h1>Mais que uma academia, um estilo de vida!</h1>
+        <p>Reabilitação e condicionamento integrados para uma vida em equilíbrio</p>
+        <a 
+          href="https://wa.me/5500000000000?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20a%20Prime%20Fitness." 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="primary-button animated-button"
+        >
+          Transforme Sua Vida Hoje
+        </a>
       </div>
     </section>
-    <section class="helper-section">
+    <section id="about" class="helper-section">
       <div class="helper-container">
         <div class="helper-video-container">
           <div class="helper-cta-card">
             <div class="cta-content">
               <span class="feature-tag">ABORDAGEM EXCLUSIVA</span>
-              <h3>Compreendemos o Ser Humano em sua totalidade</h3>
+              <h3>Compreendemos o Ser Humano em sua <span class="highlight">totalidade</span></h3>
               <p>
-                Integramos Corpo, Mente e Energia em nossa abordagem única, refletindo a essência da
-                Metodologia PRIME.
+                Integramos <span class="keyword">Corpo</span>, <span class="keyword">Mente</span> e
+                <span class="keyword">Energia</span> em nossa abordagem única, refletindo a essência
+                da <span class="highlight">Metodologia PRIME</span>.
               </p>
               <p>
-                Acolhemos cada fase da sua jornada, oferecendo cuidado personalizado e uma nova
-                consciência sobre treinamento para uma vida mais saudável.
+                Acolhemos cada fase da sua <span class="keyword">jornada</span>, oferecendo
+                <span class="highlight">cuidado personalizado</span> e uma nova
+                <span class="keyword">consciência</span> sobre treinamento para uma vida mais
+                saudável.
               </p>
             </div>
             <div class="cta-actions">
@@ -29,7 +40,6 @@
           </div>
 
           <div class="video-card">
-            <div class="video-overlay"></div>
             <video controls>
               <source src="@/assets/videos/video-demonstrativo.mp4" type="video/mp4" />
               Seu navegador não suporta a reprodução de vídeos.
@@ -38,7 +48,7 @@
         </div>
       </div>
     </section>
-    <section class="roadmap-section">
+    <section id="methodology" class="roadmap-section">
       <SectionHeader title="METODOLOGIA" subtitle="Sua Trajetória" />
       <div class="roadmap">
         <div class="roadmap-container">
@@ -60,8 +70,8 @@
           </div>
         </div>
         <div class="roadmap-tagline">
-          <p><strong>ENTENDA PORQUE NÃO SOMOS UMA</strong></p>
-          <h4>ACADEMIA TRADICIONAL</h4>
+          <p class="roadmap-tagline-text"><strong>ENTENDA PORQUE NÃO SOMOS UMA</strong></p>
+          <h4>ACADEMIA <span class="underline">TRADICIONAL</span></h4>
         </div>
         <div class="zoom-container">
           <img
@@ -73,11 +83,25 @@
         </div>
       </div>
     </section>
-    <section class="services-section">
+    <section id="services" class="services-section">
       <Services />
     </section>
-    <section class="testimonials-section">
+    <section id="testimonials" class="testimonials-section">
       <Testimonials />
+    </section>
+    <section id="classes" class="classes-section">
+      <div class="roadmap">
+        <div class="roadmap-container">
+          <div class="roadmap-card">
+            <div class="roadmap-card-front">
+              <img
+                src="@/assets/images/aulas-coletivas.png"
+                alt="Prime Fitness - Aulas Coletivas"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   </div>
 </template>
@@ -86,6 +110,7 @@
 import Testimonials from '@/components/Testimonials/Testimonials.vue'
 import Services from '@/components/Services/Services.vue'
 import SectionHeader from '@/components/SectionHeader/SectionHeader.vue'
+import Navbar from '@/components/Navbar/Navbar.vue'
 import { onMounted, ref } from 'vue'
 
 onMounted(() => {

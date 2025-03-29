@@ -27,11 +27,11 @@
 
         <div class="cta-card">
           <div class="cta-content">
-            <h3>Agende uma experimental hoje!</h3>
+            <h3>Agende uma <span class="highlight">experimental</span> hoje!</h3>
             <p>
-              Descubra como nosso método exclusivo pode transformar seu corpo e sua saúde em apenas
-              <strong>30 dias</strong>. Treinadores especializados, professores
-              <strong>atenciosos</strong> e um plano personalizado para seus objetivos.
+              Descubra como nosso <span class="highlight">método exclusivo</span> pode <span class="highlight">transformar</span> seu corpo e sua saúde em apenas
+              <strong>30 dias</strong>. Treinadores <span class="highlight">especializados</span>, professores
+              <strong>atenciosos</strong> e um plano <span class="highlight">personalizado</span> para seus objetivos.
             </p>
           </div>
           <div class="cta-actions">
@@ -73,6 +73,8 @@
             <span class="star">★</span>
           </div>
         </div>
+        
+        <div class="testimonial-divider"></div>
 
         <div class="testimonial-card">
           <div class="testimonial-author">
