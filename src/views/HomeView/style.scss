@@ -66,3 +66,270 @@
     background-color: darken($primary, 10%);
   }
 }
+
+.roadmap-section {
+  padding: 2rem 1rem 4rem;
+
+  position: relative;
+}
+
+.roadmap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem auto 4rem;
+  padding: 0 1rem;
+  position: relative;
+  max-width: 1200px;
+
+  .roadmap-container {
+    position: relative;
+    width: 100%;
+    max-width: 650px;
+    aspect-ratio: 1/1;
+    perspective: 1000px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow:
+      0 15px 35px rgba(0, 0, 0, 0.1),
+      0 5px 15px rgba(0, 0, 0, 0.05);
+  }
+
+  .roadmap-card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+
+    &-front,
+    &-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &-front {
+      background-color: $white;
+      box-shadow: inset 0 0 0 1px rgba($terracotta, 0.3);
+    }
+
+    &-back {
+      background: linear-gradient(135deg, lighten($primary, 30%), lighten($terracotta, 15%));
+      transform: rotateY(180deg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      text-align: center;
+
+      h3 {
+        font-size: 1.8rem;
+        color: $white;
+        margin-bottom: 1.5rem;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+      }
+
+      p {
+        font-size: 1.1rem;
+        color: $white;
+        line-height: 1.6;
+      }
+    }
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  .roadmap-tagline {
+    margin-top: 2rem;
+    text-align: center;
+    max-width: 650px;
+    position: relative;
+    padding: 1.5rem;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background-color: $terracotta;
+      border-radius: 2px;
+    }
+
+    p {
+      font-size: 1rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+      margin: 0;
+      color: $terracotta;
+    }
+
+    h4 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin: 0.5rem 0;
+      color: $primary;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    @media (max-width: 768px) {
+      padding: 1rem;
+
+      h4 {
+        font-size: 1.5rem;
+      }
+
+      p {
+        font-size: 0.9rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h4 {
+        font-size: 1.3rem;
+      }
+
+      p {
+        font-size: 0.8rem;
+      }
+
+      .experience {
+        padding: 0.4rem 1.2rem;
+        font-size: 0.8rem;
+      }
+    }
+  }
+
+  .zoom-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+
+    &.active {
+      display: flex;
+      opacity: 1;
+    }
+
+    .zoomed-image {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+      animation: zoomIn 0.3s ease forwards;
+    }
+
+    .close-zoom {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.3);
+        transform: rotate(90deg);
+      }
+
+      &::before,
+      &::after {
+        content: '';
+        position: absolute;
+        width: 20px;
+        height: 2px;
+        background-color: white;
+      }
+
+      &::before {
+        transform: rotate(45deg);
+      }
+
+      &::after {
+        transform: rotate(-45deg);
+      }
+    }
+  }
+
+  @keyframes zoomIn {
+    from {
+      transform: scale(0.8);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  // Responsive styles
+  @media (max-width: 768px) {
+    margin: 2rem auto 3rem;
+
+    .roadmap-container {
+      max-width: 450px;
+    }
+
+    .roadmap-card-back {
+      h3 {
+        font-size: 1.5rem;
+      }
+
+      p {
+        font-size: 1rem;
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    margin: 1rem auto 2rem;
+
+    .roadmap-container {
+      max-width: 320px;
+    }
+
+    .roadmap-card-back {
+      h3 {
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+      }
+
+      p {
+        font-size: 0.9rem;
+      }
+    }
+  }
+}
