@@ -97,8 +97,11 @@
   video {
     width: 100%;
     display: block;
-    aspect-ratio: 16/9;
+    aspect-ratio: 9/16;
     object-fit: cover;
+    @media screen and (min-width: 768px) {
+      aspect-ratio: 16/9;
+    }
   }
 }
 
@@ -125,7 +128,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  
+
   &::after {
     content: '';
     position: absolute;

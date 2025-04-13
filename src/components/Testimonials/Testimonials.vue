@@ -1,13 +1,8 @@
 <template>
   <section class="testimonials-section">
     <!-- Cabeçalho de depoimentos - Visível apenas em mobile -->
-    <div class="testimonials-header-mobile">
-      <v-btn variant="outlined" rounded color="primary" class="text-primary testimonials-button"
-        >Depoimentos</v-btn
-      >
-      <h3 class="section-title text-primary">Transformações Reais</h3>
-    </div>
-    <div class="testimonials-header-desktop">
+
+    <div class="testimonials-header">
       <SectionHeader title="Depoimentos" subtitle="Transformações Reais" />
     </div>
     <div class="testimonials-grid">
@@ -29,9 +24,11 @@
           <div class="cta-content">
             <h3>Agende uma <span class="highlight">experimental</span> hoje!</h3>
             <p>
-              Descubra como nosso <span class="highlight">método exclusivo</span> pode <span class="highlight">transformar</span> seu corpo e sua saúde em apenas
-              <strong>30 dias</strong>. Treinadores <span class="highlight">especializados</span>, professores
-              <strong>atenciosos</strong> e um plano <span class="highlight">personalizado</span> para seus objetivos.
+              Descubra como nosso <span class="highlight">método exclusivo</span> pode
+              <span class="highlight">transformar</span> seu corpo e sua saúde em apenas
+              <strong>30 dias</strong>. Treinadores <span class="highlight">especializados</span>,
+              professores <strong>atenciosos</strong> e um plano
+              <span class="highlight">personalizado</span> para seus objetivos.
             </p>
           </div>
           <div class="cta-actions">
@@ -40,7 +37,14 @@
               <p class="stats-text">Vidas</p>
               <p class="stats-label">Transformadas</p>
             </div>
-            <v-btn icon="mdi-whatsapp" variant="text" color="terracotta"></v-btn>
+            <v-btn
+              icon="mdi-whatsapp"
+              variant="text"
+              color="terracotta"
+              href="https://wa.me/5500000000000?text=Olá!%20Gostaria%20de%20agendar%20uma%20aula%20experimental%20na%20Prime%20Fitness."
+              target="_blank"
+              rel="noopener noreferrer"
+            ></v-btn>
           </div>
         </div>
       </div>
@@ -73,7 +77,7 @@
             <span class="star">★</span>
           </div>
         </div>
-        
+
         <div class="testimonial-divider"></div>
 
         <div class="testimonial-card">
