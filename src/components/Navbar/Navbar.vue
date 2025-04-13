@@ -3,7 +3,7 @@
     <div class="navbar-container">
       <div class="navbar-logo">
         <a href="#" class="logo-link">
-          <img src="@/assets/images/logo.jpg" alt="Prime Fitness Logo" class="logo-image" />
+          <img src="@/assets/images/logo.png" alt="Prime Fitness Logo" class="logo-image" />
         </a>
       </div>
 

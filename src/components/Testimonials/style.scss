@@ -1,5 +1,9 @@
 @import '@/styles/global.scss';
 
+:root {
+  --video-aspect-ratio: 9/16; // Valor padrão, será alterado via JavaScript
+}
+
 .testimonials-section {
   padding: 1rem 1.5rem;
   max-width: 1200px;
@@ -87,20 +91,368 @@
   gap: 2rem;
 }
 
+// Estilos do carousel de vídeos
+.video-carousel {
+  position: relative;
+  width: 100%;
+  max-width: 350px;
+  margin: 0 auto;
+  overflow: visible; // Alterado para visible para permitir que os controles fiquem visíveis fora do container
+  
+  @media screen and (min-width: 768px) {
+    max-width: 600px; // Aumenta a largura em telas maiores
+  }
+  
+  @media screen and (min-width: 992px) {
+    max-width: 100%; // Usa toda a largura disponível em telas grandes
+  }
+}
+
+// Controles de navegação sobrepostos para telas maiores
+.carousel-control-overlay {
+  display: none; // Oculto em mobile
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 30;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: $terracotta; // Usando a cor primária da marca
+  border: 2px solid white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  color: white;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 50%);
+    z-index: -1;
+  }
+  
+  @media screen and (min-width: 768px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  @media screen and (min-width: 992px) {
+    width: 56px;
+    height: 56px;
+  }
+  
+  .v-icon {
+    font-size: 24px;
+    transition: transform 0.2s ease;
+    
+    @media screen and (min-width: 992px) {
+      font-size: 28px;
+    }
+  }
+  
+  &.prev {
+    left: -20px;
+    
+    @media screen and (min-width: 992px) {
+      left: -28px;
+    }
+    
+    &:hover .v-icon {
+      transform: translateX(-2px);
+    }
+  }
+  
+  &.next {
+    right: -20px;
+    
+    @media screen and (min-width: 992px) {
+      right: -28px;
+    }
+    
+    &:hover .v-icon {
+      transform: translateX(2px);
+    }
+  }
+  
+  &:hover {
+    background-color: $terracotta-strong; // Usando a cor primária mais forte
+    transform: translateY(-50%) scale(1.05);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba($terracotta, 0.3), 0 6px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: #ccc;
+    border-color: #eee;
+    box-shadow: none;
+    
+    &:hover {
+      transform: translateY(-50%);
+      background-color: #ccc;
+    }
+  }
+}
+
+.carousel-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  touch-action: pan-y; // Permite scroll vertical mas captura gestos horizontais
+}
+
 .video-card {
   width: 100%;
   border-radius: 8px;
   overflow: hidden;
-  background-color: #f5f5f5;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-
-  video {
-    width: 100%;
+  background-color: #1a1a1a;
+  aspect-ratio: var(--video-aspect-ratio); // Usa a variável CSS
+  max-width: 350px;
+  margin: 0 auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  position: relative;
+  display: none;
+  transition: aspect-ratio 0.3s ease; // Transição suave ao mudar a proporção
+  
+  @media screen and (min-width: 768px) {
+    max-width: 600px;
+  }
+  
+  @media screen and (min-width: 992px) {
+    max-width: 100%;
+  }
+  
+  &.active {
     display: block;
-    aspect-ratio: 9/16;
+  }
+  
+  video, iframe {
+    width: 100%;
+    height: 100%;
+    display: block;
     object-fit: cover;
-    @media screen and (min-width: 768px) {
-      aspect-ratio: 16/9;
+  }
+}
+
+// Placeholder para vídeos não carregados
+.video-placeholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #1a1a1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  cursor: pointer; // Indica que é clicável
+  
+  &:hover .placeholder-icon {
+    transform: scale(1.1);
+  }
+}
+
+// Estado de carregamento
+.video-loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #1a1a1a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  
+  .loading-text {
+    color: white;
+    margin-top: 1rem;
+    font-size: 0.875rem;
+    opacity: 0.8;
+  }
+}
+
+.loading-spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(255, 255, 255, 0.2);
+  border-top-color: $terracotta;
+  border-radius: 50%;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.placeholder-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: rgba(227, 83, 54, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+// Controles do carousel
+.carousel-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+  gap: 1rem;
+  width: 100%;
+  
+  @media screen and (min-width: 768px) {
+    display: none; // Oculta os controles inferiores em telas maiores
+  }
+}
+
+.carousel-control {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: white;
+  border: 2px solid $terracotta; // Usando a cor terracotta da marca
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  color: $terracotta; // Usando a cor terracotta da marca
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba($terracotta, 0.1) 0%, rgba($terracotta, 0) 60%);
+    z-index: -1;
+  }
+  
+  .v-icon {
+    font-size: 20px;
+    transition: transform 0.2s ease;
+  }
+  
+  &.prev:hover .v-icon {
+    transform: translateX(-2px);
+  }
+  
+  &.next:hover .v-icon {
+    transform: translateX(2px);
+  }
+  
+  &:hover {
+    background-color: $terracotta;
+    color: white;
+    transform: scale(1.05);
+  }
+  
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba($terracotta, 0.3), 0 3px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: #f5f5f5;
+    border-color: #ddd;
+    color: #aaa;
+    box-shadow: none;
+    
+    &:hover {
+      transform: none;
+      background-color: #f5f5f5;
+      color: #aaa;
+    }
+  }
+}
+
+.carousel-indicators {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+  
+  .indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 4px;
+    background-color: rgba($terracotta, 0.3);
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+    overflow: hidden;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: $terracotta;
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+    }
+    
+    &.active {
+      width: 24px;
+      background-color: rgba($terracotta, 0.3);
+      
+      &::after {
+        transform: translateX(0);
+      }
+    }
+    
+    &:hover {
+      background-color: rgba($terracotta, 0.5);
+    }
+    
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px rgba($terracotta, 0.3);
     }
   }
 }

@@ -66,7 +66,7 @@
 
           <div class="video-card">
             <video controls>
-              <source src="@/assets/videos/video-demonstrativo.mp4" type="video/mp4" />
+              <source src="@/assets/videos/video-demonstrativo.mp4" type="video/mp4" :poster="videoPoster"/>
               Seu navegador não suporta a reprodução de vídeos.
             </video>
           </div>
@@ -95,6 +95,7 @@
                 src="@/assets/images/tragetoria.png"
                 alt="Prime Fitness - Sua Trajetória de Tratamento"
               />
+              <ExpandImage :imageUrl="roadmapImage" />
             </div>
             <div class="roadmap-card-back">
               <h3>Metodologia PRIME</h3>
@@ -132,6 +133,7 @@
                 src="@/assets/images/aulas-coletivas.png"
                 alt="Prime Fitness - Aulas Coletivas"
               />
+              <ExpandImage :imageUrl="aulasImage" />
             </div>
           </div>
         </div>
@@ -152,8 +154,12 @@
 import Testimonials from '@/components/Testimonials/Testimonials.vue'
 import Services from '@/components/Services/Services.vue'
 import SectionHeader from '@/components/SectionHeader/SectionHeader.vue'
+import aulasImage from '@/assets/images/aulas-coletivas.png'
+import videoPoster from '@/assets/images/IMG_9020.jpg'
+import roadmapImage from '@/assets/images/tragetoria.png'
 import Navbar from '@/components/Navbar/Navbar.vue'
 import { onMounted, ref } from 'vue'
+import ExpandImage from '@/components/ExpandImage/ExpandImage.vue'
 
 onMounted(() => {
   // Get elements for trajectory image
