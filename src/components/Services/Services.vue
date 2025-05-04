@@ -1,7 +1,7 @@
 <template>
   <div class="services-section">
     <!-- Cabeçalho de serviços - Visível em todos os dispositivos -->
-    <SectionHeader title="Serviços" subtitle="Transforme seu corpo e sua mente" />
+    <SectionHeader subtitle="Serviços" />
 
     <Swiper
       :slidesPerView="1"
@@ -47,11 +47,12 @@ const modules = [Pagination, FreeMode]
 const swiperInstance = ref(null)
 const items = ref([
   {
-    title: 'Prime Day',
+    title: 'Atendimento Personalizado',
     description:
-      'Uma <strong>aula gratuita</strong> para você nos conhecer!<br><br>' +
-      'Agende sua aula e venha experimentar o <span class="highlight">novo jeito</span> de cuidar do seu <strong>corpo e mente</strong>. Aproveite essa <span class="highlight">oportunidade exclusiva</span> para dar o primeiro passo rumo à sua <strong>melhor versão</strong>.',
-    imageUrl: bemEstarImage
+      'Um <span class="highlight">personal trainer</span> ao seu lado do início ao fim do treino, gerando <strong>segurança</strong> e <span class="highlight">acompanhamento constante</span>.<br><br>' +
+      'Treinos <strong>atualizados todos os meses</strong> para você não cair na rotina, com <span class="highlight">estímulos variados</span> que seus músculos precisam para evoluir.<br><br>' +
+      'Desenvolvimento focado em <span class="highlight">performance</span>, <span class="highlight">estética</span> e <span class="highlight">reabilitação</span> — tudo com o <strong>suporte individualizado</strong> que você merece.',
+    imageUrl: personalImage
   },
   {
     title: 'Setor de Programação PRIME',
@@ -65,16 +66,9 @@ const items = ref([
       'Sem necessidade de agendamento! Treinos <span class="highlight">dinâmicos</span>, <strong>motivadores</strong> e <strong>100% focados</strong> nos seus objetivos.',
     imageUrl: programacaoImage
   },
+
   {
-    title: 'Atendimento Personalizado',
-    description:
-      'Um <span class="highlight">personal trainer</span> ao seu lado do início ao fim do treino, gerando <strong>segurança</strong> e <span class="highlight">acompanhamento constante</span>.<br><br>' +
-      'Treinos <strong>atualizados todos os meses</strong> para você não cair na rotina, com <span class="highlight">estímulos variados</span> que seus músculos precisam para evoluir.<br><br>' +
-      'Desenvolvimento focado em <span class="highlight">performance</span>, <span class="highlight">estética</span> e <span class="highlight">reabilitação</span> — tudo com o <strong>suporte individualizado</strong> que você merece.',
-    imageUrl: personalImage
-  },
-  {
-    title: 'PRIME - Reabilitação Integrada',
+    title: 'PRIME - Análise Postural',
     description:
       '<strong>Análise do aluno:</strong> <br><br>' +
       '<span class="highlight">Avaliação Postural:</span> Quadril inclinado e <strong>pelve desalinhada</strong> (rotação e elevação). ' +
@@ -87,6 +81,13 @@ const items = ref([
       '• Aumentar <strong>disposição</strong>, <span class="highlight">resistência cardiorrespiratória</span> e <strong>função digestiva</strong>.<br>' +
       '• <span class="highlight">Realinhar postura</span>, aumentar <strong>massa magra</strong> e promover <strong>emagrecimento</strong>.',
     imageUrl: analisePosturalImage
+  },
+  {
+    title: 'Prime Day',
+    description:
+      'Uma <strong>aula gratuita</strong> para você nos conhecer!<br><br>' +
+      'Agende sua aula e venha experimentar o <span class="highlight">novo jeito</span> de cuidar do seu <strong>corpo e mente</strong>. Aproveite essa <span class="highlight">oportunidade exclusiva</span> para dar o primeiro passo rumo à sua <strong>melhor versão</strong>.',
+    imageUrl: bemEstarImage
   },
   {
     title: 'PRIME CARD',

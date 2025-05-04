@@ -3,15 +3,15 @@
     <!-- Cabeçalho de depoimentos - Visível apenas em mobile -->
 
     <div class="testimonials-header">
-      <SectionHeader title="Depoimentos" subtitle="Transformações Reais" />
+      <SectionHeader subtitle="Depoimentos" />
     </div>
     <div class="testimonials-grid">
       <div class="video-container">
         <!-- Carousel de vídeos com controles de navegação -->
         <div class="video-carousel">
           <!-- Controles de navegação laterais para telas maiores -->
-          <button 
-            class="carousel-control-overlay prev" 
+          <button
+            class="carousel-control-overlay prev"
             @click="prevVideo"
             :disabled="currentVideoIndex === 0"
             aria-label="Vídeo anterior"
@@ -19,9 +19,9 @@
           >
             <v-icon icon="mdi-arrow-left-thick"></v-icon>
           </button>
-          
-          <button 
-            class="carousel-control-overlay next" 
+
+          <button
+            class="carousel-control-overlay next"
             @click="nextVideo"
             :disabled="currentVideoIndex === videos.length - 1"
             aria-label="Próximo vídeo"
@@ -29,9 +29,9 @@
           >
             <v-icon icon="mdi-arrow-right-thick"></v-icon>
           </button>
-          
-          <div 
-            class="carousel-container" 
+
+          <div
+            class="carousel-container"
             ref="carouselContainer"
             @touchstart="handleTouchStart"
             @touchmove="handleTouchMove"
@@ -44,8 +44,8 @@
               :class="{ active: currentVideoIndex === index }"
             >
               <!-- Placeholder para vídeos não ativos -->
-              <div 
-                class="video-placeholder" 
+              <div
+                class="video-placeholder"
                 v-if="currentVideoIndex !== index"
                 @click="goToVideo(index)"
                 role="button"
@@ -83,8 +83,8 @@
 
           <!-- Controles de navegação do carousel -->
           <div class="carousel-controls">
-            <button 
-              class="carousel-control prev" 
+            <button
+              class="carousel-control prev"
               @click="prevVideo"
               :disabled="currentVideoIndex === 0"
               aria-label="Vídeo anterior"
@@ -146,7 +146,7 @@
         </div>
       </div>
 
-      <div class="testimonials-column">
+      <!-- <div class="testimonials-column">
         <div class="testimonial-card">
           <div class="testimonial-author">
             <div
@@ -204,7 +204,7 @@
             <span class="star">★</span>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </section>
 </template>
@@ -215,9 +215,9 @@ import SectionHeader from '../SectionHeader/SectionHeader.vue'
 
 // Lista de vídeos do YouTube
 const videos = [
+  { id: 3, url: 'https://youtube.com/shorts/kVF09sd90No' },
   { id: 1, url: 'https://youtube.com/shorts/ws8oQyXirHk' },
-  { id: 2, url: 'https://youtube.com/shorts/OnbfGMxnlIc' },
-  { id: 3, url: 'https://youtube.com/shorts/kVF09sd90No' }
+  { id: 2, url: 'https://youtube.com/shorts/OnbfGMxnlIc' }
 ]
 
 // Estado do carousel
@@ -281,7 +281,7 @@ const handleTouchMove = (e) => {
 
 const handleTouchEnd = () => {
   const swipeDistance = touchEndX.value - touchStartX.value
-  
+
   // Se o swipe for significativo
   if (Math.abs(swipeDistance) > touchThreshold) {
     if (swipeDistance > 0) {
@@ -292,7 +292,7 @@ const handleTouchEnd = () => {
       nextVideo()
     }
   }
-  
+
   // Reset dos valores
   touchStartX.value = 0
   touchEndX.value = 0
@@ -320,10 +320,10 @@ onMounted(() => {
       }
     })
   }
-  
+
   // Ajustar proporção inicialmente
   adjustVideoRatio()
-  
+
   // Ajustar proporção quando a janela for redimensionada
   window.addEventListener('resize', adjustVideoRatio)
 })

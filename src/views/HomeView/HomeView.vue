@@ -3,8 +3,8 @@
     <Navbar />
     <section id="hero" class="hero-section">
       <div class="hero-content">
-        <h1>Mais que uma Academia, um Estilo de Vida!</h1>
-        <p>Reabilitação e Condicionamento Integrados para uma Vida em Equilíbrio</p>
+        <h2 class="hero-title">MAIS QUE UMA ACADEMIA, UM ESTILO DE VIDA!</h2>
+        <!-- <p>Reabilitação e Condicionamento Integrados para uma Vida em Equilíbrio</p> -->
       </div>
       <div class="cta-button mt-2">
         <a
@@ -64,29 +64,25 @@
             </div>
           </div>
 
-          <div class="video-card">
+          <!-- <div class="video-card">
             <video controls>
-              <source src="@/assets/videos/video-demonstrativo.mp4" type="video/mp4" :poster="videoPoster"/>
+              <source
+                src="@/assets/videos/video-demonstrativo.mp4"
+                type="video/mp4"
+                :poster="videoPoster"
+              />
               Seu navegador não suporta a reprodução de vídeos.
             </video>
-          </div>
+          </div> -->
         </div>
       </div>
     </section>
     <section id="methodology" class="roadmap-section">
       <div class="roadmap">
         <div class="roadmap-tagline">
-          <p class="roadmap-tagline-text"><strong>Entenda Porque Não Somos Uma</strong></p>
-          <div class="cta-wrapper">
-            <a
-              href="https://wa.me/5500000000000?text=Olá!%20Gostaria%20de%20conhecer%20a%20metodologia%20exclusiva%20da%20Prime%20Fitness."
-              target="_blank"
-              rel="noopener noreferrer"
-              class="primary-button animated-button cta-methodology"
-            >
-              ACADEMIA TRADICIONAL
-            </a>
-          </div>
+          <p class="roadmap-tagline-text">
+            <strong>Entenda Porque Não Somos Uma ACADEMIA TRADICIONAL</strong>
+          </p>
         </div>
         <div class="roadmap-container">
           <div class="roadmap-card">
@@ -97,6 +93,7 @@
               />
               <ExpandImage :imageUrl="roadmapImage" />
             </div>
+
             <div class="roadmap-card-back">
               <h3>Metodologia PRIME</h3>
               <p>
@@ -118,11 +115,18 @@
         </div>
       </div>
     </section>
+    <div class="cta-wrapper align-center text-center">
+      <a
+        href="https://wa.me/5500000000000?text=Olá!%20Gostaria%20de%20conhecer%20a%20metodologia%20exclusiva%20da%20Prime%20Fitness."
+        target="_blank"
+        rel="noopener noreferrer"
+        class="primary-button animated-button cta-methodology"
+      >
+        Transforme sua vida hoje!
+      </a>
+    </div>
     <section id="services" class="services-section">
       <Services />
-    </section>
-    <section id="testimonials" class="testimonials-section">
-      <Testimonials />
     </section>
     <section id="classes" class="classes-section">
       <div class="roadmap">
@@ -146,6 +150,9 @@
           <div class="close-zoom"></div>
         </div>
       </div>
+    </section>
+    <section id="testimonials" class="testimonials-section">
+      <Testimonials />
     </section>
   </div>
 </template>
